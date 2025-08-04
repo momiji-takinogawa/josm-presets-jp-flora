@@ -25,7 +25,7 @@ def generate_presets(csv, xml)
   taxa = csv.map do |taxon, vernacular|
     Taxon.new(**parse_taxon(taxon), vernacular:)
   end
-  species, genera = taxa.partition { it.species }
+  species, genera = taxa.partition { it.species || it.cultivar }
   species = species.group_by { it.genus }
 
   genera.each do |genus|
