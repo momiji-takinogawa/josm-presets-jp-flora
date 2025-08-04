@@ -35,8 +35,8 @@ def generate_presets(csv, xml)
     end
 
     xml.add_element('group', 'name' => genus.vernacular).tap do |group|
-      group.add_element('item', 'name' => '*' + genus.vernacular, 'type' => 'node,closedway,multipolygon', 'preset_name_label' => 'true') do |item|
-        item.add_element('reference', 'ref' => "genus-#{species.genus}")
+      group.add_element('item', 'name' => '*' + genus.vernacular, 'type' => 'node,closedway,multipolygon', 'preset_name_label' => 'true').tap do |item|
+        item.add_element('reference', 'ref' => "genus-#{genus.genus}")
         item.add_element('text', 'key' => 'taxon', 'text' => 'Taxon', 'default' => genus.genus)
         item.add_element('text', 'key' => "taxon:#{LANG}", 'text' => "Taxon (#{LANG})", 'default' => genus.vernacular)
         item.add_element('text', 'key' => 'taxon:cultivar', 'text' => 'Cultivar')
