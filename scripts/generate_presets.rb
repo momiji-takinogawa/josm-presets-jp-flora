@@ -14,16 +14,26 @@ RE_TAXON = /\A
 (?:\s(?<cultivar>'.+?'))?
 \z/x
 
-Taxon = Data.define(:genus, :species, :cultivar, :vernacular)
+Taxon = Data.define(:genus, :species, :cultivar, :vernacular, :leaf_type)
+class Taxon
+  def full_taxon = [genus, species, cultivar].compact.join(' ')
+  def full_species
+    return nil unless species
+    [genus, species].join(' ')
+  end
+end
 
 def parse_taxon(taxon)
   raise "Unexpected: #{taxon}" unless taxon =~ RE_TAXON
-  $~.named_captures(symbolize_names: true)
+  $~.named_captures(symbolize_names: true).tap do |h|
+    h[:species]&.gsub!('x ', " \u00D7 ")
+    h[:cultivar]&.gsub!(/\A'/, "\u2018")&.gsub!(/'\z/, "\u2019")
+  end
 end
 
 def generate_presets(csv, xml)
-  taxa = csv.map do |taxon, vernacular|
-    Taxon.new(**parse_taxon(taxon), vernacular:)
+  taxa = csv.map do |taxon, vernacular, leaf_type|
+    Taxon.new(**parse_taxon(taxon), vernacular:, leaf_type:)
   end
   species, genera = taxa.partition { it.species || it.cultivar }
   species = species.group_by { it.genus }
@@ -41,16 +51,19 @@ def generate_presets(csv, xml)
         item.add_element('text', 'key' => "taxon:#{LANG}", 'text' => "Taxon (#{LANG})", 'default' => genus.vernacular)
         item.add_element('text', 'key' => 'taxon:cultivar', 'text' => 'Cultivar')
         item.add_element('text', 'key' => "taxon:cultivar:#{LANG}", 'text' => "Cultivar (#{LANG})")
+        item.add_element('key', 'key' => 'leaf_type', 'value' => genus.leaf_type)
       end
 
       species[genus.genus]&.each do |species|
         name = species.cultivar ? "‘#{species.vernacular}’" : species.vernacular
         group.add_element('item', 'name' => name, 'type' => 'node,closedway,multipolygon', 'preset_name_label' => 'true').tap do |item|
           item.add_element('reference', 'ref' => "genus-#{species.genus}")
-          item.add_element('text', 'key' => 'taxon', 'text' => 'Taxon', 'default' => [species.genus, species.species, species.cultivar].compact.join(' '))
+          item.add_element('text', 'key' => 'species', 'text' => 'Species', 'default' => species.full_species)
+          item.add_element('text', 'key' => 'taxon', 'text' => 'Taxon', 'default' => species.full_taxon)
           item.add_element('text', 'key' => "taxon:#{LANG}", 'text' => 'Taxon (ja)', 'default' => species.vernacular.sub('/\s*\(.+\)\z/', ''))
           item.add_element('text', 'key' => 'taxon:cultivar', 'text' => 'Cultivar', 'default' => species.cultivar&.gsub(/\A'|'\z/, ''))
           item.add_element('text', 'key' => "taxon:cultivar:#{LANG}", 'text' => "Cultivar (#{LANG})", 'default' => (species.vernacular.sub('/\s*\(.+\)\z/', '') if species.cultivar))
+          item.add_element('key', 'key' => 'leaf_type', 'value' => species.leaf_type)
         end
       end
     end
