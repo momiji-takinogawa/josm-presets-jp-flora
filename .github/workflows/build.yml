@@ -1,0 +1,20 @@
+name: Build
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: ruby/setup-ruby@v1
+    - run: ./scripts/generate_presets.rb
+    - run: gh release upload "$TAG" presets.zip
+      env:
+        TAG: ${{ github.ref_name }}
+      if: github.event_name == 'release'
