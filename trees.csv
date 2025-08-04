@@ -1,5 +1,5 @@
-Acer buergerianum,トウカエデ,broadleaved
 Acer amoenum var. matsumurae,ヤマモミジ,broadleaved
+Acer buergerianum,トウカエデ,broadleaved
 Acer palmatum,イロハモミジ,broadleaved
 Acer pycnanthum,ハナノキ,broadleaved
 Acer,カエデ属,broadleaved
@@ -24,8 +24,8 @@ Camellia sinensis,チャノキ,broadleaved
 Camellia,ツバキ属,broadleaved
 Castanopsis sieboldii,スダジイ,broadleaved
 Castanopsis,シイ属,broadleaved
-Catalpa ovata,キササゲ,broadleaved
 Catalpa bignonioides,アメリカキササゲ,broadleaved
+Catalpa ovata,キササゲ,broadleaved
 Catalpa,キササゲ属,broadleaved
 Cedrus deodara,ヒマラヤスギ,needleleaved
 Cedrus libani,レバノンスギ,needleleaved
@@ -38,10 +38,10 @@ Cerasus 'Kanzan',カンザン,broadleaved
 Cerasus 'Sobanzakura',イツカヤマ,broadleaved
 Cerasus 'Yoko',ヨウコウ,broadleaved
 Cerasus campanulata,カンヒザクラ,broadleaved
-Cerasus itosakura,エドヒガン (広義),broadleaved
 Cerasus itosakura 'Pendula',イトザクラ,broadleaved
 Cerasus itosakura 'Plena-rosea',ヤエベニシダレ,broadleaved
 Cerasus itosakura var. itosakura f. ascendens,エドヒガン,broadleaved
+Cerasus itosakura,エドヒガン (広義),broadleaved
 Cerasus jamasakura,ヤマザクラ,broadleaved
 Cerasus leveilleana,カスミザクラ,broadleaved
 Cerasus speciosa,オオシマザクラ,broadleaved
@@ -67,6 +67,9 @@ Cleyera,サカキ属,broadleaved
 Cornus controversa,ミズキ,broadleaved
 Cornus florida,ハナミズキ,broadleaved
 Cornus,ミズキ属,broadleaved
+Daphniphyllum macropodum subsp. macropodum,ユズリハ,broadleaved
+Daphniphyllum teijsmannii,ヒメユズリハ,broadleaved
+Daphniphyllum,ユズリハ属,broadleaved
 Davidia involucrata,ハンカチノキ,broadleaved
 Davidia,ハンカチノキ属,broadleaved
 Dendropanax trifidus,カクレミノ,broadleaved
@@ -75,9 +78,6 @@ Diospyros kaki,カキノキ,broadleaved
 Diospyros,カキノキ属,broadleaved
 Distylium racemosum,イスノキ,broadleaved
 Distylium,イスノキ属,broadleaved
-Daphniphyllum macropodum subsp. macropodum,ユズリハ,broadleaved
-Daphniphyllum teijsmannii,ヒメユズリハ,broadleaved
-Daphniphyllum,ユズリハ属,broadleaved
 Ehretia acuminata,チシャノキ,broadleaved
 Ehretia dicksonii,マルバチシャノキ,broadleaved
 Ehretia,チシャノキ属,broadleaved
@@ -92,6 +92,8 @@ Fagus crenata,ブナ,broadleaved
 Fagus,ブナ属,broadleaved
 Fatsia japonica,ヤツデ,broadleaved
 Fatsia,ヤツデ属,broadleaved
+Ficus carica,イチジク,broadleaved
+Ficus,イチジク属,broadleaved
 Firmiana simplex,アオギリ,broadleaved
 Firmiana,アオギリ属,broadleaved
 Ginkgo biloba,イチョウ,broadleaved
@@ -116,8 +118,11 @@ Juniperus chinensis,イブキ,broadleaved
 Juniperus,ビャクシン属,broadleaved
 Kalmia latifolia,アメリカシャクナゲ,broadleaved
 Kalmia,カルミア属,broadleaved
+Lagerstroemia indica 'Alba',シロバナサルスベリ,broadleaved
 Lagerstroemia indica,サルスベリ,broadleaved
 Lagerstroemia,サルスベリ属,broadleaved
+Larix kaempferi,カラマツ,needleleaved
+Larix,カラマツ属,needleleaved
 Ligustrum japonicum,ネズミモチ,broadleaved
 Ligustrum lucidum,トウネズミモチ,broadleaved
 Ligustrum,イボタノキ属,broadleaved
@@ -182,7 +187,8 @@ Platanus occidentalis,アメリカスズカケノキ,broadleaved
 Platanus orientalis,スズカケノキ,broadleaved
 Platanus x acerifolia,モミジバスズカケノキ,broadleaved
 Platanus,プラタナス属,broadleaved
-Podocarpus macrophyllus,イヌマキ,needleleaved
+Podocarpus macrophyllus f. angustifolius,イヌマキ,needleleaved
+Podocarpus macrophyllus f. macrophyllus,ラカンマキ,needleleaved
 Podocarpus,マキ属,needleleaved
 Populus nigra var. italica,セイヨウハコヤナギ,broadleaved
 Populus,ヤマナラシ属,broadleaved
@@ -203,12 +209,14 @@ Quercus,コナラ属,broadleaved
 Rhaphiolepis indica,モッコクモドキ,broadleaved
 Rhaphiolepis umbellata,シャリンバイ,broadleaved
 Rhaphiolepis,シャリンバイ属,broadleaved
-Rhododendron x pulchrum,ヒラドツツジ,broadleaved
 Rhododendron indicum,サツキ,broadleaved
+Rhododendron x pulchrum,ヒラドツツジ,broadleaved
 Rhododendron,ツツジ属,broadleaved
 Robinia pseudoacacia,ハリエンジュ,broadleaved
 Robinia,ハリエンジュ属,broadleaved
 Rosa,バラ属,broadleaved
+Salvia rosmarinus,マンネンロウ,broadleaved
+Salvia,アキギリ属,broadleaved
 Sorbus commixta,ナナカマド,broadleaved
 Sorbus,ナナカマド属,broadleaved
 Staphylea bumalda,ミツバウツギ,broadleaved
@@ -237,6 +245,7 @@ Ulmus parvifolia,アキニレ,broadleaved
 Ulmus,ニレ属,broadleaved
 Viburnum odoratissimum,サンゴジュ,broadleaved
 Viburnum,ガマズミ属,broadleaved
+Vitis,ブドウ属,broadleaved
 Washingtonia filifera,ワシントンヤシ,broadleaved
 Washingtonia robusta,ワシントンヤシモドキ,broadleaved
 Washingtonia,ワシントンヤシ属,broadleaved
