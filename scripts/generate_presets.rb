@@ -59,7 +59,7 @@ end
 
 xml = REXML::Document.new
 xml << REXML::XMLDecl.new('1.0', 'UTF-8')
-presets = xml.add_element('presets', 'xmlns' => 'http://josm.openstreetmap.de/tagging-preset-1.0', 'baselanguage' => LANG)
+presets = xml.add_element('presets', 'xmlns' => 'http://josm.openstreetmap.de/tagging-preset-1.0', 'baselanguage' => LANG, 'version' => ENV['GITHUB_REF_NAME'])
 FILES.each do |name, path|
   csv = CSV.read(ROOT + path)
 
