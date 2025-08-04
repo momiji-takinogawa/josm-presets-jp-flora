@@ -44,7 +44,8 @@ def generate_presets(csv, xml)
       end
 
       species[genus.genus]&.each do |species|
-        group.add_element('item', 'name' => species.vernacular, 'type' => 'node,closedway,multipolygon', 'preset_name_label' => 'true').tap do |item|
+        cv = species.cultivar ? ' (栽培品種)' : ''
+        group.add_element('item', 'name' => species.vernacular + cv, 'type' => 'node,closedway,multipolygon', 'preset_name_label' => 'true').tap do |item|
           item.add_element('reference', 'ref' => "genus-#{species.genus}")
           item.add_element('text', 'key' => 'taxon', 'text' => 'Taxon', 'default' => [species.genus, species.species, species.cultivar].compact.join(' '))
           item.add_element('text', 'key' => "taxon:#{LANG}", 'text' => 'Taxon (ja)', 'default' => species.vernacular)
