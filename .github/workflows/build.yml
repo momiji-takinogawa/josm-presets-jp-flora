@@ -17,4 +17,5 @@ jobs:
     - run: gh release upload "$TAG" presets.zip
       env:
         TAG: ${{ github.ref_name }}
+        GH_TOKEN: ${{ github.token }}
       if: github.event_name == 'release'
