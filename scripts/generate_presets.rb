@@ -10,7 +10,7 @@ LANG = 'ja'
 
 RE_TAXON = /\A
 (?<genus>[A-Z][a-z-]+)
-(?:\s(?<species>(?:x\s)?[a-z-]{2,}(?:\s(?:ssp\.|var\.|f\.)\s[a-z-]{2,})*))?
+(?:\s(?<species>(?:x\s)?[a-z-]{2,}(?:\s(?:subsp\.|var\.|f\.)\s[a-z-]{2,})*))?
 (?:\s(?<cultivar>'.+?'))?
 \z/x
 
@@ -48,9 +48,9 @@ def generate_presets(csv, xml)
         group.add_element('item', 'name' => name, 'type' => 'node,closedway,multipolygon', 'preset_name_label' => 'true').tap do |item|
           item.add_element('reference', 'ref' => "genus-#{species.genus}")
           item.add_element('text', 'key' => 'taxon', 'text' => 'Taxon', 'default' => [species.genus, species.species, species.cultivar].compact.join(' '))
-          item.add_element('text', 'key' => "taxon:#{LANG}", 'text' => 'Taxon (ja)', 'default' => species.vernacular)
+          item.add_element('text', 'key' => "taxon:#{LANG}", 'text' => 'Taxon (ja)', 'default' => species.vernacular.sub('/\s*\(.+\)\z/', ''))
           item.add_element('text', 'key' => 'taxon:cultivar', 'text' => 'Cultivar', 'default' => species.cultivar&.gsub(/\A'|'\z/, ''))
-          item.add_element('text', 'key' => "taxon:cultivar:#{LANG}", 'text' => "Cultivar (#{LANG})", 'default' => (species.vernacular if species.cultivar))
+          item.add_element('text', 'key' => "taxon:cultivar:#{LANG}", 'text' => "Cultivar (#{LANG})", 'default' => (species.vernacular.sub('/\s*\(.+\)\z/', '') if species.cultivar))
         end
       end
     end
