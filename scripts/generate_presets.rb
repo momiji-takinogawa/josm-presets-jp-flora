@@ -14,6 +14,8 @@ RE_TAXON = /\A
 (?:\s(?<cultivar>'.+?'))?
 \z/x
 
+OBJECT_TYPES = 'node,way,closedway,multipolygon'
+
 Taxon = Data.define(:genus, :species, :cultivar, :vernacular, :leaf_type)
 class Taxon
   def full_taxon = [genus, species, cultivar].compact.join(' ')
@@ -45,7 +47,7 @@ def generate_presets(csv, xml)
     end
 
     xml.add_element('group', 'name' => genus.vernacular).tap do |group|
-      group.add_element('item', 'name' => '*' + genus.vernacular, 'type' => 'node,closedway,multipolygon', 'preset_name_label' => 'true').tap do |item|
+      group.add_element('item', 'name' => '*' + genus.vernacular, 'type' => OBJECT_TYPES, 'preset_name_label' => 'true').tap do |item|
         item.add_element('reference', 'ref' => "genus-#{genus.genus}")
         item.add_element('text', 'key' => 'taxon', 'text' => 'Taxon', 'default' => genus.genus)
         item.add_element('text', 'key' => "taxon:#{LANG}", 'text' => "Taxon (#{LANG})", 'default' => genus.vernacular)
@@ -56,7 +58,7 @@ def generate_presets(csv, xml)
 
       species[genus.genus]&.each do |species|
         name = species.cultivar ? "‘#{species.vernacular}’" : species.vernacular
-        group.add_element('item', 'name' => name, 'type' => 'node,closedway,multipolygon', 'preset_name_label' => 'true').tap do |item|
+        group.add_element('item', 'name' => name, 'type' => OBJECT_TYPES, 'preset_name_label' => 'true').tap do |item|
           item.add_element('reference', 'ref' => "genus-#{species.genus}")
           item.add_element('text', 'key' => 'species', 'text' => 'Species', 'default' => species.full_species)
           item.add_element('text', 'key' => 'taxon', 'text' => 'Taxon', 'default' => species.full_taxon)
