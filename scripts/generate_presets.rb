@@ -28,7 +28,7 @@ end
 def parse_taxon(taxon)
   raise "Unexpected: #{taxon}" unless taxon =~ RE_TAXON
   $~.named_captures(symbolize_names: true).tap do |h|
-    h[:species]&.gsub!('x ', " \u00D7 ")
+    h[:species]&.gsub!('x ', "\u00D7 ")
     h[:cultivar]&.gsub!(/\A'/, "\u2018")&.gsub!(/'\z/, "\u2019")
   end
 end
