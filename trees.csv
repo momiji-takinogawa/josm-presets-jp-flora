@@ -22,6 +22,9 @@ Camellia japonica,ヤブツバキ,broadleaved
 Camellia sasanqua,サザンカ,broadleaved
 Camellia sinensis,チャノキ,broadleaved
 Camellia,ツバキ属,broadleaved
+Campsis grandiflora,ノウゼンカズラ,broadleaved
+Campsis radicans,アメリカノウゼンカズラ,broadleaved
+Campsis,ノウゼンカズラ属,broadleaved
 Castanea crenata,クリ,broadleaved
 Castanea,クリ属,broadleaved
 Castanopsis sieboldii,スダジイ,broadleaved
@@ -104,6 +107,8 @@ Ficus erecta var. erecta,イヌビワ,broadleaved
 Ficus,イチジク属,broadleaved
 Firmiana simplex,アオギリ,broadleaved
 Firmiana,アオギリ属,broadleaved
+Gardenia jasminoides,クチナシ,broadleaved
+Gardenia,クチナシ属,broadleaved
 Ginkgo biloba,イチョウ,broadleaved
 Ginkgo,イチョウ属,broadleaved
 Hibiscus mutabilis,フヨウ,broadleaved
@@ -277,5 +282,3 @@ Wisteria floribunda,フジ,broadleaved
 Wisteria,フジ属,broadleaved
 Zelkova serrata,ケヤキ,broadleaved
 Zelkova,ケヤキ属,broadleaved
-Gardenia jasminoides,クチナシ,broadleaved
-Gardenia,クチナシ属,broadleaved
