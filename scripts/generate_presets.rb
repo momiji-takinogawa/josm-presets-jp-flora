@@ -11,14 +11,14 @@ LANG = 'ja'
 RE_TAXON = /\A
 (?<genus>[A-Z][a-z-]+)
 (?:\s(?<species>(?:x\s)?[a-z-]{2,}(?:\s(?:subsp\.|var\.|f\.)\s[a-z-]{2,})*))?
-(?:\s(?<cultivar>'.+?'))?
+(?:\s'(?<cultivar>.+)')?
 \z/x
 
 OBJECT_TYPES = 'node,way,closedway,multipolygon'
 
 Taxon = Data.define(:genus, :species, :cultivar, :vernacular, :leaf_type)
 class Taxon
-  def full_taxon = [genus, species, cultivar].compact.join(' ')
+  def full_taxon = [genus, species, cultivar && "‘#{cultivar}’"].compact.join(' ')
   def full_species
     return nil unless species
     [genus, species].join(' ')
@@ -29,7 +29,6 @@ def parse_taxon(taxon)
   raise "Unexpected: #{taxon}" unless taxon =~ RE_TAXON
   $~.named_captures(symbolize_names: true).tap do |h|
     h[:species]&.gsub!('x ', "\u00D7 ")
-    h[:cultivar]&.gsub!(/\A'/, "\u2018")&.gsub!(/'\z/, "\u2019")
   end
 end
 
