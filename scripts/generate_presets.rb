@@ -59,7 +59,9 @@ def generate_presets(csv, xml)
         name = species.cultivar ? "‘#{species.vernacular}’" : species.vernacular
         group.add_element('item', 'name' => name, 'type' => OBJECT_TYPES, 'preset_name_label' => 'true').tap do |item|
           item.add_element('reference', 'ref' => "genus-#{species.genus}")
-          item.add_element('key', 'key' => 'species', 'value' => species.full_species)
+          if full_species = species.full_species
+            item.add_element('key', 'key' => 'species', 'value' => full_species, 'match' => 'none')
+          end
           item.add_element('key', 'key' => 'taxon', 'value' => species.full_taxon)
           item.add_element('key', 'key' => "taxon:#{LANG}", 'value' => species.vernacular.sub('/\s*\(.+\)\z/', ''), 'match' => 'none')
           if species.cultivar
