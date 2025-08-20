@@ -42,14 +42,14 @@ def generate_presets(csv, xml)
   genera.each do |genus|
     xml.add_element('chunk', 'id' => "genus-#{genus.genus}").tap do |chunk|
       chunk.add_element('key', 'key' => 'genus', 'value' => genus.genus)
-      chunk.add_element('key', 'key' => 'genus:ja', 'value' => genus.vernacular)
+      chunk.add_element('key', 'key' => 'genus:ja', 'value' => genus.vernacular, 'match' => 'none')
     end
 
     xml.add_element('group', 'name' => genus.vernacular).tap do |group|
       group.add_element('item', 'name' => '*' + genus.vernacular, 'type' => OBJECT_TYPES, 'preset_name_label' => 'true').tap do |item|
         item.add_element('reference', 'ref' => "genus-#{genus.genus}")
         item.add_element('key', 'key' => 'taxon', 'value' => genus.genus)
-        item.add_element('key', 'key' => "taxon:#{LANG}", 'value' => genus.vernacular)
+        item.add_element('key', 'key' => "taxon:#{LANG}", 'value' => genus.vernacular, 'match' => 'none')
         item.add_element('text', 'key' => 'taxon:cultivar', 'text' => 'Cultivar')
         item.add_element('text', 'key' => "taxon:cultivar:#{LANG}", 'text' => "Cultivar (#{LANG})", 'match' => 'none')
         item.add_element('key', 'key' => 'leaf_type', 'value' => genus.leaf_type, 'match' => 'none')
