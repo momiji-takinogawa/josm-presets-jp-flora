@@ -48,23 +48,28 @@ def generate_presets(csv, xml)
     xml.add_element('group', 'name' => genus.vernacular).tap do |group|
       group.add_element('item', 'name' => '*' + genus.vernacular, 'type' => OBJECT_TYPES, 'preset_name_label' => 'true').tap do |item|
         item.add_element('reference', 'ref' => "genus-#{genus.genus}")
-        item.add_element('text', 'key' => 'taxon', 'text' => 'Taxon', 'default' => genus.genus)
-        item.add_element('text', 'key' => "taxon:#{LANG}", 'text' => "Taxon (#{LANG})", 'default' => genus.vernacular)
+        item.add_element('key', 'key' => 'taxon', 'value' => genus.genus)
+        item.add_element('key', 'key' => "taxon:#{LANG}", 'value' => genus.vernacular)
         item.add_element('text', 'key' => 'taxon:cultivar', 'text' => 'Cultivar')
-        item.add_element('text', 'key' => "taxon:cultivar:#{LANG}", 'text' => "Cultivar (#{LANG})")
-        item.add_element('key', 'key' => 'leaf_type', 'value' => genus.leaf_type)
+        item.add_element('text', 'key' => "taxon:cultivar:#{LANG}", 'text' => "Cultivar (#{LANG})", 'match' => 'none')
+        item.add_element('key', 'key' => 'leaf_type', 'value' => genus.leaf_type, 'match' => 'none')
       end
 
       species[genus.genus]&.each do |species|
         name = species.cultivar ? "‘#{species.vernacular}’" : species.vernacular
         group.add_element('item', 'name' => name, 'type' => OBJECT_TYPES, 'preset_name_label' => 'true').tap do |item|
           item.add_element('reference', 'ref' => "genus-#{species.genus}")
-          item.add_element('text', 'key' => 'species', 'text' => 'Species', 'default' => species.full_species)
-          item.add_element('text', 'key' => 'taxon', 'text' => 'Taxon', 'default' => species.full_taxon)
-          item.add_element('text', 'key' => "taxon:#{LANG}", 'text' => 'Taxon (ja)', 'default' => species.vernacular.sub('/\s*\(.+\)\z/', ''))
-          item.add_element('text', 'key' => 'taxon:cultivar', 'text' => 'Cultivar', 'default' => species.cultivar&.gsub(/\A'|'\z/, ''))
-          item.add_element('text', 'key' => "taxon:cultivar:#{LANG}", 'text' => "Cultivar (#{LANG})", 'default' => (species.vernacular.sub('/\s*\(.+\)\z/', '') if species.cultivar))
-          item.add_element('key', 'key' => 'leaf_type', 'value' => species.leaf_type)
+          item.add_element('key', 'key' => 'species', 'value' => species.full_species)
+          item.add_element('key', 'key' => 'taxon', 'value' => species.full_taxon)
+          item.add_element('key', 'key' => "taxon:#{LANG}", 'value' => species.vernacular.sub('/\s*\(.+\)\z/', ''), 'match' => 'none')
+          if species.cultivar
+            item.add_element('key', 'key' => 'taxon:cultivar', 'value' => species.cultivar&.gsub(/\A'|'\z/, ''))
+            item.add_element('key', 'key' => "taxon:cultivar:#{LANG}", 'value' => (species.vernacular.sub('/\s*\(.+\)\z/', '') if species.cultivar), 'match' => 'none')
+          else
+            item.add_element('text', 'key' => 'taxon:cultivar', 'text' => 'Cultivar')
+            item.add_element('text', 'key' => "taxon:cultivar:#{LANG}", 'text' => "Cultivar (#{LANG})")
+          end
+          item.add_element('key', 'key' => 'leaf_type', 'value' => species.leaf_type, 'match' => 'none')
         end
       end
     end
